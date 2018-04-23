@@ -1,0 +1,79 @@
+###############################################################################
+### CHRONOS INFRA AND TUNING
+###############################################################################
+
+##### Spring
+spring:
+  cloud:
+    config:
+      # Allow local configuration to override Remote Externalized configuration
+      allowOverride: true
+      # But, only System properties or Env variables (and not local config files)
+      # will override externalized configuration
+      overrideSystemProperties: false
+
+##### For RoutingKey and Payload
+DataCenter:
+  Region:
+  Country:
+
+##### Scheduler
+Scheduler:
+  ThreadPoolSize: 10
+
+##### Elasticsearch connection details
+ES:
+  DB:
+    Protocol: http
+    CONN:
+      TIMEOUT:
+        MS: 10000
+    READ:
+      TIMEOUT:
+        MS: 10000
+    Host: localhost
+    Port: 9200
+    User:
+    Password:
+    Index:
+      Trigger:
+        Name: trigger
+        Type: trigger-stats
+      Lock:
+        Name: lock
+        Type: digital-chronos
+
+### Elasticsearch instance lock
+Lock:
+  # Renew after every 20 sec
+  RenewalCron: "0/20 * * * * *"
+
+  # Expire after every 30 sec
+  RenewPeriodInSec: 30
+
+##### RabbitMQ connection details
+Digital:
+  RabbitMQ:
+    Host: localhost
+    Port: 5672
+    User: guest
+    Password: guest
+    VHost: /
+    Exchange:
+      Trigger: cbxtriggers
+      Consumer: cbxevents
+      EvtDL: cbxevents
+    Queue:
+      EvtDL: dlq.digital-chronos
+    RoutingKey:
+      EvtDL: digital-chronos.dead
+
+##### Apache Camel
+Camel:
+  LogLevel: INFO
+
+###############################################################################
+### CHRONOS SCHEDULER CONFIG
+###############################################################################
+Triggers:
+  # Empty for now until action APIs are deployed
