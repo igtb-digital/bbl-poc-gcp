@@ -37,10 +37,10 @@ ES:
     Password:
     Index:
       Trigger:
-        Name: trigger
+        Name: bbl.trigger
         Type: trigger-stats
       Lock:
-        Name: lock
+        Name: bbl.lock
         Type: digital-chronos
 
 ### Elasticsearch instance lock
