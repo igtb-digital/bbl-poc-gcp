@@ -76,4 +76,12 @@ Camel:
 ### CHRONOS SCHEDULER CONFIG
 ###############################################################################
 Triggers:
-  # Empty for now until action APIs are deployed
+  
+  ##### Collections:-
+  - 
+    Name: MandateApproved
+    type: ReleaseBatchTrigger
+    Schedule: "0 0-58/2 * * * *"
+    Param:
+      BatchType: APPROVED
+      PayloadType: Mandate
